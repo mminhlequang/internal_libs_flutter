@@ -6,10 +6,10 @@ AppSetup? get appSetup => AppSetup._instance;
 AppColorsBase? get appColors => appSetup?.appColors;
 AppPrefsBase? get appPrefs => appSetup?.appPrefs;
 
-Color? get appColorPrimary => appSetup?.appColors.primary;
-Color? get appColorBackground => appSetup?.appColors.background;
-Color? get appColorElement => appSetup?.appColors.element;
-Color? get appColorText => appSetup?.appColors.text;
+Color get appColorPrimary => appSetup?.appColors.primary ?? Colors.white;
+Color get appColorBackground => appSetup?.appColors.background ?? Colors.white;
+Color get appColorElement => appSetup?.appColors.element ?? Colors.white;
+Color get appColorText => appSetup?.appColors.text ?? Colors.white;
 
 BuildContext? get findAppContext => appSetup?.findAppContext?.call();
 
