@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:internal_libs_network/options.dart';
+import 'package:internal_network/options.dart';
 import 'package:dio/browser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -26,15 +26,16 @@ class AppClient extends DioForBrowser {
     BaseOptions? options,
     List<Interceptor>? customInterceptors,
   }) {
+    baseUrl ??= appBaseUrl;
     _enableErrorHandler = enableErrorHandler;
 
     _instance ??= AppClient._(
-      baseUrl: baseUrl ?? appBaseUrl,
+      baseUrl: appBaseUrl,
       options: options,
       customInterceptors: customInterceptors,
     );
     if (options != null) _instance!.options = options;
-    _instance!.options.baseUrl = baseUrl ?? appBaseUrl;
+    if (appBaseUrl != null) _instance!.options.baseUrl = appBaseUrl!;
     (_instance!.transformer as BackgroundTransformer).jsonDecodeCallback =
         parseJson;
     if ((token == null || token.isEmpty)) {
@@ -61,20 +62,22 @@ class AppClient extends DioForBrowser {
     if (customInterceptors?.isNotEmpty == true) {
       interceptors.addAll(customInterceptors!);
     }
-    if (networkOptions.loggingEnable) {
+    if (networkOptions?.loggingEnable == true) {
       interceptors.add(
         PrettyDioLogger(
-          requestHeader: networkOptions.loggingrequestHeader,
-          requestBody: networkOptions.loggingrequestBody,
-          responseBody: networkOptions.loggingrequestBody,
-          responseHeader: networkOptions.loggingrequestHeader,
-          error: networkOptions.loggingerror,
-          compact: networkOptions.loggingcompact,
-          maxWidth: networkOptions.loggingmaxWidth,
+          requestHeader: networkOptions!.loggingrequestHeader,
+          requestBody: networkOptions!.loggingrequestBody,
+          responseBody: networkOptions!.loggingrequestBody,
+          responseHeader: networkOptions!.loggingrequestHeader,
+          error: networkOptions!.loggingerror,
+          compact: networkOptions!.loggingcompact,
+          maxWidth: networkOptions!.loggingmaxWidth,
         ),
       );
     }
-    this.options.baseUrl = baseUrl ?? appBaseUrl;
+    if((baseUrl ?? appBaseUrl) != null) {
+      this.options.baseUrl = (baseUrl ?? appBaseUrl)!;
+    }
   }
 
   _requestInterceptor(

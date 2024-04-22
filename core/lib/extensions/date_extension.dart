@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import '../setup/index.dart';
 
 DateFormat intlDateFormat([newPattern, languageCode]) {
-  return DateFormat(newPattern, languageCode ?? appPrefs.languageCode);
+  return DateFormat(newPattern, languageCode ?? appPrefs?.languageCode);
 }
 
 class TimeOfDayS {
@@ -129,33 +129,33 @@ extension DateHelperExtension on DateTime {
   }
 
   String getGregorianWeekDayAndDate({languageCode}) {
-    final f = DateFormat('EEEE, MMM d', languageCode ?? appPrefs.languageCode);
+    final f = DateFormat('EEEE, MMM d', languageCode ?? appPrefs?.languageCode);
 
     return f.format(this);
   }
 
   String formatDate({String? formatType, languageCode}) {
-    return DateFormat(formatType ?? appPrefs.dateFormat,
-            languageCode ?? appPrefs.languageCode)
+    return DateFormat(formatType ?? appPrefs?.dateFormat,
+            languageCode ?? appPrefs?.languageCode)
         .format(this);
   }
 
   String formatShortDate({String? formatType, languageCode}) {
     return DateFormat(
-            formatType ?? appPrefs.dateFormat.replaceAll('yyyy', 'yy'),
-            languageCode ?? appPrefs.languageCode)
+            formatType ?? appPrefs?.dateFormat.replaceAll('yyyy', 'yy'),
+            languageCode ?? appPrefs?.languageCode)
         .format(this);
   }
 
   String formatTime({String? formatType, languageCode}) {
-    return DateFormat(formatType ?? appPrefs.timeFormat,
-            languageCode ?? appPrefs.languageCode)
+    return DateFormat(formatType ?? appPrefs?.timeFormat,
+            languageCode ?? appPrefs?.languageCode)
         .format(this);
   }
 
   String formatDateTime({languageCode}) {
-    return DateFormat('${appPrefs.timeFormat}, ${appPrefs.dateFormat}',
-            languageCode ?? appPrefs.languageCode)
+    return DateFormat('${appPrefs?.timeFormat}, ${appPrefs?.dateFormat}',
+            languageCode ?? appPrefs?.languageCode)
         .format(this);
   }
 }

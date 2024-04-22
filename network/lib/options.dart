@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:internal_libs/setup/index.dart';
+import 'package:internal_core/setup/index.dart';
 import 'package:dio/dio.dart';
 
 import 'network_resources/resources.dart';
@@ -31,14 +31,14 @@ Map<String, dynamic> appMapParms([Map? value]) {
   return params;
 }
 
-PNetworkOptionsImpl get networkOptions =>
-    appSetup.networkOptions as PNetworkOptionsImpl;
+PNetworkOptionsImpl? get networkOptions =>
+    appSetup?.networkOptions as PNetworkOptionsImpl?;
 
-String get appBaseUrl => networkOptions.baseUrl;
-String get appBaseUrlAsset => networkOptions.baseUrlAsset;
-String? get appMqttUrl => networkOptions.mqttUrl;
-int? get appMqttPort => networkOptions.mqttPort;
-Function(DioException)? get errorInterceptor => networkOptions.errorInterceptor;
+String? get appBaseUrl => networkOptions?.baseUrl;
+String? get appBaseUrlAsset => networkOptions?.baseUrlAsset;
+String? get appMqttUrl => networkOptions?.mqttUrl;
+int? get appMqttPort => networkOptions?.mqttPort;
+Function(DioException)? get errorInterceptor => networkOptions?.errorInterceptor;
 
 class PNetworkOptionsImpl extends PNetworkOptions {
   final Function(DioException)? errorInterceptor;

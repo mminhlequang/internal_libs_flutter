@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
 import '../setup/index.dart';
 import 'shimmer.dart';
@@ -34,9 +34,10 @@ class WidgetAppShimmer extends StatelessWidget {
     this.borderRadius,
   });
 
-  Color get baseColor => appColors.shimmerBaseColor ;
+  Color get baseColor => appColors?.shimmerBaseColor ?? Colors.white;
 
-  Color get highlightColor => appColors.shimerHighlightColor  ;
+  Color get highlightColor =>
+      appColors?.shimerHighlightColor ?? Colors.grey[200]!;
 
   @override
   Widget build(BuildContext context) {

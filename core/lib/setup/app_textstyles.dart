@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'app_setup.dart';
 
-double get _height => appSetup.appTextStyleWrap?.height?.call() ?? 1.2;
-double get _fontSize => appSetup.appTextStyleWrap?.fontSize?.call() ?? 14;
+double get _height => appSetup?.appTextStyleWrap?.height?.call() ?? 1.2;
+double get _fontSize => appSetup?.appTextStyleWrap?.fontSize?.call() ?? 14;
 TextStyle _fontWrap({required TextStyle textStyle}) {
-  if (appSetup.appTextStyleWrap?.fontWrap != null) {
-    return appSetup.appTextStyleWrap!.fontWrap(textStyle);
+  if (appSetup?.appTextStyleWrap?.fontWrap != null) {
+    return appSetup!.appTextStyleWrap!.fontWrap(textStyle);
   }
   return GoogleFonts.outfit(textStyle: textStyle);
 }

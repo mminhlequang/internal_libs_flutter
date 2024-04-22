@@ -1,4 +1,4 @@
-import 'package:internal_libs/internal_libs.dart';
+import 'package:internal_core/internal_core.dart';
 import 'package:dio/dio.dart';
 
 import 'network_resources/resources.dart';

@@ -1,5 +1,5 @@
-name: internal_libs_network
-description: internal_libs_network project.
+name: internal_network
+description: internal_network project.
 version: 0.1.0+4
 
 environment:
@@ -15,9 +15,8 @@ dependencies:
   pretty_dio_logger: ^1.3.1
   mqtt_client: ">=10.2.1"
   
-  internal_libs: ">=0.1.0+4"
-  # internal_libs: 
-  #   path: ../core
+  internal_core: 
+    path: ../core
 
 dev_dependencies:
   flutter_lints: ">=3.0.2"

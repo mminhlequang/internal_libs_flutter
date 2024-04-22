@@ -65,7 +65,7 @@ class WidgetAppImage extends StatelessWidget {
     String correctImage = imageUrl!;
     if (autoPrefix && !isUrlEmpty) {
       correctImage =
-          appSetup.networkOptions?.appImageCorrectUrl.call(correctImage) ??
+          appSetup?.networkOptions?.appImageCorrectUrl.call(correctImage) ??
               correctImage;
     }
 

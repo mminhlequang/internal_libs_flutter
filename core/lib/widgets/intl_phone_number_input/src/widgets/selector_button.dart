@@ -1,4 +1,4 @@
-import 'package:internal_libs/widgets/widget_app_flag.dart';
+import 'package:internal_core/widgets/widget_app_flag.dart';
 import 'package:flutter/material.dart';
 
 import '../../intl_phone_number_input.dart';

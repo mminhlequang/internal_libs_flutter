@@ -1,8 +1,8 @@
-import 'package:internal_libs/internal_libs.dart';
+import 'package:internal_core/internal_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
-import 'package:internal_libs_network/options.dart';
+import 'package:internal_network/options.dart';
 
 enum MQTTConnectionState { connecting, connected, disconnected }
 

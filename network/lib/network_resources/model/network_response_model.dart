@@ -1,5 +1,5 @@
-import 'package:internal_libs/setup/index.dart';
-import 'package:internal_libs_network/options.dart';
+import 'package:internal_core/setup/index.dart';
+import 'package:internal_network/options.dart';
 import 'package:dio/dio.dart' as dio;
 
 class NetworkResponse<T> {
@@ -7,14 +7,14 @@ class NetworkResponse<T> {
   static String unknownError = 'unknownError';
 
   String get responsePrefixData =>
-      networkOptions.responsePrefixData ?? "values";
+      networkOptions?.responsePrefixData ?? "values";
 
   int? statusCode;
   T? data;
   String? msg;
 
-  bool get isSuccess => networkOptions.responseIsSuccess != null
-      ? networkOptions.responseIsSuccess!(this)
+  bool get isSuccess => networkOptions?.responseIsSuccess != null
+      ? networkOptions!.responseIsSuccess!(this)
       : ((statusCode == 200 || statusCode == 201) && data != null);
 
   bool get isError => statusCode != 200 && statusCode != 201;

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
 import 'widget_app_image.dart';
 import '../setup/index.dart';
@@ -70,7 +70,8 @@ class WidgetAvatar extends StatelessWidget {
         decoration: BoxDecoration(
             color: backgroundColor,
             border: Border.all(
-                width: radius1 - radius2, color: borderColor ?? appColors.text),
+                width: radius1 - radius2,
+                color: borderColor ?? appColors?.text ?? Colors.white),
             shape: BoxShape.circle),
         width: radius1 * 2,
         height: radius1 * 2,

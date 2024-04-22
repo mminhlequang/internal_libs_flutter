@@ -25,7 +25,7 @@ class WidgetRippleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: elevation,
-      shadowColor: shadowColor ?? appColorText.withOpacity(.1),
+      shadowColor: shadowColor ?? appColorText?.withOpacity(.1),
       color: color ?? hexColor('#F0F1F6'),
       shape: RoundedRectangleBorder(borderRadius: borderRadius),
       clipBehavior: Clip.none,
