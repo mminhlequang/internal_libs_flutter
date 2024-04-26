@@ -38,9 +38,11 @@ String? get appBaseUrl => networkOptions?.baseUrl;
 String? get appBaseUrlAsset => networkOptions?.baseUrlAsset;
 String? get appMqttUrl => networkOptions?.mqttUrl;
 int? get appMqttPort => networkOptions?.mqttPort;
-Function(DioException)? get errorInterceptor => networkOptions?.errorInterceptor;
+Function(DioException)? get errorInterceptor =>
+    networkOptions?.errorInterceptor;
 
 class PNetworkOptionsImpl extends PNetworkOptions {
+  final List<Interceptor>? customInterceptors;
   final Function(DioException)? errorInterceptor;
 
   final String? responsePrefixData;
@@ -61,6 +63,7 @@ class PNetworkOptionsImpl extends PNetworkOptions {
     required super.baseUrlAsset,
     super.mqttUrl,
     super.mqttPort,
+    this.customInterceptors,
     this.errorInterceptor,
     this.loggingEnable = true,
     this.loggingrequestHeader = false,

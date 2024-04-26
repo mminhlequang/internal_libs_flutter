@@ -62,6 +62,9 @@ class AppClient extends DioForBrowser {
     if (customInterceptors?.isNotEmpty == true) {
       interceptors.addAll(customInterceptors!);
     }
+    if (networkOptions?.customInterceptors?.isNotEmpty == true) {
+      interceptors.addAll(networkOptions!.customInterceptors!);
+    }
     if (networkOptions?.loggingEnable == true) {
       interceptors.add(
         PrettyDioLogger(
