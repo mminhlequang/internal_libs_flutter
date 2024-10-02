@@ -1,19 +1,7 @@
-import 'dart:convert';
 
 import 'package:internal_network/options.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
-import 'package:flutter/foundation.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
-
-_parseAndDecode(String response) {
-  return jsonDecode(response);
-}
-
-parseJson(String text) {
-  return compute(_parseAndDecode, text);
-}
 
 class AppClient extends DioForNative {
   static AppClient? _instance;
@@ -37,8 +25,7 @@ class AppClient extends DioForNative {
     );
     if (options != null) _instance!.options = options;
     if (appBaseUrl != null) _instance!.options.baseUrl = appBaseUrl!;
-    (_instance!.transformer as BackgroundTransformer).jsonDecodeCallback =
-        parseJson;
+
     if ((token == null || token.isEmpty)) {
       _instance!.options.headers.remove(r'Authorization');
     } else {
@@ -67,17 +54,14 @@ class AppClient extends DioForNative {
       interceptors.addAll(networkOptions!.customInterceptors!);
     }
     if (networkOptions?.loggingEnable == true) {
-      interceptors.add(
-        PrettyDioLogger(
-          requestHeader: networkOptions!.loggingrequestHeader,
-          requestBody: networkOptions!.loggingrequestBody,
-          responseBody: networkOptions!.loggingrequestBody,
-          responseHeader: networkOptions!.loggingrequestHeader,
-          error: networkOptions!.loggingerror,
-          compact: networkOptions!.loggingcompact,
-          maxWidth: networkOptions!.loggingmaxWidth,
-        ),
-      );
+      interceptors.add(LogInterceptor(
+        request: true,
+        requestHeader: true,
+        requestBody: true,
+        responseHeader: true,
+        responseBody: true,
+        error: true,
+      ));
     }
     if ((baseUrl ?? appBaseUrl) != null) {
       this.options.baseUrl = (baseUrl ?? appBaseUrl)!;
