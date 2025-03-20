@@ -54,92 +54,49 @@ class WidgetInkWellTransparent extends StatelessWidget {
 class WidgetRippleButton extends StatelessWidget {
   const WidgetRippleButton({
     super.key,
-    this.enable = true,
-    this.title = '',
     this.color,
     this.disabledColor,
-    this.hoverColor,
-    this.radius = 26,
     this.elevation = 0,
     this.onTap,
-    this.height,
-    this.width,
-    this.border,
-    this.titleStyle,
-    this.borderRadius,
     this.child,
     this.shadowColor,
+    this.enable = true,
+    this.radius = 99,
+    this.borderSide = BorderSide.none,
   });
 
-  const WidgetRippleButton.child({
-    required this.child,
-    this.color,
-    this.disabledColor,
-    this.hoverColor,
-    this.elevation = 0,
-    this.borderRadius,
-    this.radius = 26,
-    this.enable = true,
-    this.onTap,
-    this.titleStyle,
-    this.shadowColor,
-    super.key,
-  })  : border = null,
-        height = null,
-        width = null,
-        title = '';
-
   final bool enable;
-  final String title;
   final Color? color;
   final Color? disabledColor;
-  final Color? hoverColor;
   final Color? shadowColor;
   final double elevation;
-  final BorderRadius? borderRadius;
-  final double radius;
   final VoidCallback? onTap;
   final Widget? child;
-  final double? height;
-  final double? width;
-  final BoxBorder? border;
-  final TextStyle? titleStyle;
-
-  BorderRadius get _borderRadius =>
-      borderRadius ?? BorderRadius.circular(radius);
+  final double radius;
+  final BorderSide borderSide;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       elevation: elevation,
-      shadowColor: shadowColor,
+      shadowColor: shadowColor ?? appColors?.text.withValues(alpha: .1),
       color: enable
-          ? color ?? Colors.transparent
-          : (disabledColor ?? Colors.transparent),
-      shape: RoundedRectangleBorder(borderRadius: _borderRadius),
+          ? (color ?? Colors.white)
+          : disabledColor ?? hexColor('#F2F2F2'),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(radius),
+        side: borderSide,
+      ),
+      clipBehavior: Clip.none,
       child: InkWell(
-        borderRadius: _borderRadius,
-        onTap: enable ? onTap : null,
-        hoverColor: hoverColor,
-        child: child ??
-            Container(
-              height: height ?? 50,
-              width: width ?? 311,
-              decoration: BoxDecoration(
-                borderRadius: _borderRadius,
-                border: border,
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: titleStyle ??
-                    w400TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-              ),
-            ),
+        borderRadius: BorderRadius.circular(radius),
+        onTap: enable && onTap != null
+            ? () {
+                appHaptic();
+                onTap!.call();
+              }
+            : null,
+        child: child,
       ),
     );
   }
