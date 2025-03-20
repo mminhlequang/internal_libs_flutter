@@ -1,4 +1,8 @@
-export 'setup/index.dart';
+export 'setup/app_base.dart';
+export 'setup/app_setup.dart';
+export 'setup/app_textstyles.dart';
+export 'setup/app_utils.dart';
+
 export 'widgets/widgets.dart';
 export 'extensions/extensions.dart';
  

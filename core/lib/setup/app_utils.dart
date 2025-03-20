@@ -5,7 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart'; 
+import 'package:logger/logger.dart';
+
+import '../internal_core.dart';
+
+String appImageCorrectUrl(String url, {base}) =>
+    appSetup?.networkOptions?.appImageCorrectUrl(url, base: base) ?? url;
 
 int intInRange(int min, int max) => min + Random().nextInt(max - min);
 

@@ -26,9 +26,9 @@ TextStyle w100TextStyle({
               fontStyle: fontStyle,
               fontSize: fontSize ?? _fontSize,
               fontWeight: FontWeight.w100,
-              color: color ?? appColorText,
+              color: color ?? appColors?.text,
               decoration: decoration,
-              decorationColor: decorationColor ?? color ?? appColorText,
+              decorationColor: decorationColor ?? color ?? appColors?.text,
               height: height ?? _height)
           .merge(style));
 }
@@ -47,9 +47,9 @@ TextStyle w200TextStyle({
               fontStyle: fontStyle,
               fontSize: fontSize ?? _fontSize,
               fontWeight: FontWeight.w200,
-              color: color ?? appColorText,
+              color: color ?? appColors?.text,
               decoration: decoration,
-              decorationColor: decorationColor ?? color ?? appColorText,
+              decorationColor: decorationColor ?? color ?? appColors?.text,
               height: height ?? _height)
           .merge(style));
 }
@@ -68,9 +68,9 @@ TextStyle w300TextStyle({
               fontStyle: fontStyle,
               fontSize: fontSize ?? _fontSize,
               fontWeight: FontWeight.w300,
-              color: color ?? appColorText,
+              color: color ?? appColors?.text,
               decoration: decoration,
-              decorationColor: decorationColor ?? color ?? appColorText,
+              decorationColor: decorationColor ?? color ?? appColors?.text,
               height: height ?? _height)
           .merge(style));
 }
@@ -89,9 +89,9 @@ TextStyle w400TextStyle({
               fontStyle: fontStyle,
               fontSize: fontSize ?? _fontSize,
               fontWeight: FontWeight.w400,
-              color: color ?? appColorText,
+              color: color ?? appColors?.text,
               decoration: decoration,
-              decorationColor: decorationColor ?? color ?? appColorText,
+              decorationColor: decorationColor ?? color ?? appColors?.text,
               height: height ?? _height)
           .merge(style));
 }
@@ -110,9 +110,9 @@ TextStyle w500TextStyle({
               fontStyle: fontStyle,
               fontSize: fontSize ?? _fontSize,
               fontWeight: FontWeight.w500,
-              color: color ?? appColorText,
+              color: color ?? appColors?.text,
               decoration: decoration,
-              decorationColor: decorationColor ?? color ?? appColorText,
+              decorationColor: decorationColor ?? color ?? appColors?.text,
               height: height ?? _height)
           .merge(style));
 }
@@ -131,9 +131,9 @@ TextStyle w600TextStyle({
               fontStyle: fontStyle,
               fontSize: fontSize ?? _fontSize,
               fontWeight: FontWeight.w600,
-              color: color ?? appColorText,
+              color: color ?? appColors?.text,
               decoration: decoration,
-              decorationColor: decorationColor ?? color ?? appColorText,
+              decorationColor: decorationColor ?? color ?? appColors?.text,
               height: height ?? _height)
           .merge(style));
 }
@@ -152,9 +152,9 @@ TextStyle w700TextStyle({
               fontStyle: fontStyle,
               fontSize: fontSize ?? _fontSize,
               fontWeight: FontWeight.w700,
-              color: color ?? appColorText,
+              color: color ?? appColors?.text,
               decoration: decoration,
-              decorationColor: decorationColor ?? color ?? appColorText,
+              decorationColor: decorationColor ?? color ?? appColors?.text,
               height: height ?? _height)
           .merge(style));
 }
@@ -173,9 +173,9 @@ TextStyle w800TextStyle({
               fontStyle: fontStyle,
               fontSize: fontSize ?? _fontSize,
               fontWeight: FontWeight.w800,
-              color: color ?? appColorText,
+              color: color ?? appColors?.text,
               decoration: decoration,
-              decorationColor: decorationColor ?? color ?? appColorText,
+              decorationColor: decorationColor ?? color ?? appColors?.text,
               height: height ?? _height)
           .merge(style));
 }
@@ -194,9 +194,9 @@ TextStyle w900TextStyle({
               fontStyle: fontStyle,
               fontSize: fontSize ?? _fontSize,
               fontWeight: FontWeight.w900,
-              color: color ?? appColorText,
+              color: color ?? appColors?.text,
               decoration: decoration,
-              decorationColor: decorationColor ?? color ?? appColorText,
+              decorationColor: decorationColor ?? color ?? appColors?.text,
               height: height ?? _height)
           .merge(style));
 }

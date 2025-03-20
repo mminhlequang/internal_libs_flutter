@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:internal_core/setup/index.dart';
+import 'package:internal_core/internal_core.dart';
 import 'package:dio/dio.dart';
 
 import 'network_resources/resources.dart';

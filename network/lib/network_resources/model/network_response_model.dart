@@ -1,4 +1,4 @@
-import 'package:internal_core/setup/index.dart';
+import 'package:internal_core/internal_core.dart';
 import 'package:internal_network/options.dart';
 import 'package:dio/dio.dart' as dio;
 
@@ -10,24 +10,24 @@ class NetworkResponse<T> {
       networkOptions?.responsePrefixData ?? "values";
 
   int? statusCode;
+  bool? status;
   T? data;
   String? msg;
 
-  bool get isSuccess => networkOptions?.responseIsSuccess != null
-      ? networkOptions!.responseIsSuccess!(this)
-      : ((statusCode == 200 || statusCode == 201) && data != null);
+  bool get isSuccess => (status == true && data != null);
 
-  bool get isError => statusCode != 200 && statusCode != 201;
+  bool get isError => status != true;
   bool get isErrorDisconnect => msg == disconnectError;
 
-  NetworkResponse({this.data, this.statusCode, this.msg});
+  NetworkResponse({this.data, this.statusCode, this.status, this.msg});
 
   factory NetworkResponse.fromResponse(dio.Response response,
       {dynamic Function(dynamic)? converter, value, String? prefix}) {
     try {
       return NetworkResponse._fromJson(response.data,
           converter: converter, prefix: prefix, value: value)
-        ..statusCode = response.statusCode;
+        ..statusCode = response.statusCode
+        ..status = response.data?['status'];
     } catch (e) {
       return NetworkResponse.withErrorConvert(e);
     }
@@ -35,6 +35,7 @@ class NetworkResponse<T> {
 
   NetworkResponse._fromJson(dynamic json,
       {dynamic Function(dynamic)? converter, value, String? prefix}) {
+    status = json?['status'];
     if (value != null) {
       data = value;
     } else if (prefix != null) {

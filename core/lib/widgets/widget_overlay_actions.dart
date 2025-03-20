@@ -2,7 +2,7 @@ import 'package:internal_core/extensions/context_extension.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../setup/index.dart';
+import '../internal_core.dart';
 
 enum GestureType { none, rightClick, onTap, longPress, hover }
 
@@ -164,6 +164,8 @@ class WidgetOverlayActionsState extends State<WidgetOverlayActions>
           onTapDown: (details) {
             pointerPosition = details.globalPosition;
           },
+          splashColor: Colors.transparent,
+          overlayColor: MaterialStateProperty.all(Colors.transparent),
           borderRadius: BorderRadius.circular(widget.inkwellBorderRadius),
           child: _child,
         );

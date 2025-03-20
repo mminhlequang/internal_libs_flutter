@@ -3,9 +3,13 @@ import 'package:internal_core/internal_core.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:octo_image/octo_image.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 
 ImageProvider getImageProviderFromUrl(String imageUrl) {
-  return CachedNetworkImageProvider(appImageCorrectUrl(imageUrl));
+  return CachedNetworkImageProvider(
+    appImageCorrectUrl(imageUrl),
+    imageRenderMethodForWeb: ImageRenderMethodForWeb.HttpGet,
+  );
 }
 
 class WidgetAppImage extends StatelessWidget {
@@ -66,8 +70,7 @@ class WidgetAppImage extends StatelessWidget {
 
   bool get isUrlEmpty =>
       (imageUrl ?? '').trim().isEmpty ||
-      (imageUrl ?? '').trim() ==
-          appSetup?.networkOptions?.baseUrlAsset;
+      (imageUrl ?? '').trim() == appSetup?.networkOptions?.baseUrlAsset;
 
   Widget get error => errorWidget ?? const SizedBox();
 
@@ -106,6 +109,7 @@ class WidgetAppImage extends StatelessWidget {
             headers: headers,
             maxWidth: maxWidthDiskCache,
             maxHeight: maxHeightDiskCache,
+            imageRenderMethodForWeb: ImageRenderMethodForWeb.HttpGet,
           )) as ImageProvider;
 
     return OctoImage(
@@ -170,13 +174,10 @@ class WidgetAppShimmer extends StatelessWidget {
   });
 
   Color get _baseColor =>
-      baseColor ??
-      appColors?.shimmerBaseColor ??
-      hexColor('#F4F6F8');
+      baseColor ?? appColors?.shimmerBaseColor ?? hexColor('#F4F6F8');
 
   Color get _highlightColor =>
-      highlightColor ??
-      appColors?.shimmerHighlightColor ?? Colors.white;
+      highlightColor ?? appColors?.shimmerHighlightColor ?? Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -193,5 +194,3 @@ class WidgetAppShimmer extends StatelessWidget {
     );
   }
 }
-
- 

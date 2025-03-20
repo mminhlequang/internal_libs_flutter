@@ -1,7 +1,10 @@
+import 'dart:convert';
 
 import 'package:internal_network/options.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:flutter/foundation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class AppClient extends DioForNative {
   static AppClient? _instance;
@@ -54,14 +57,17 @@ class AppClient extends DioForNative {
       interceptors.addAll(networkOptions!.customInterceptors!);
     }
     if (networkOptions?.loggingEnable == true) {
-      interceptors.add(LogInterceptor(
-        request: true,
-        requestHeader: true,
-        requestBody: true,
-        responseHeader: true,
-        responseBody: true,
-        error: true,
-      ));
+      interceptors.add(
+        PrettyDioLogger(
+          requestHeader: networkOptions!.loggingrequestHeader,
+          requestBody: networkOptions!.loggingrequestBody,
+          responseBody: networkOptions!.loggingrequestBody,
+          responseHeader: networkOptions!.loggingrequestHeader,
+          error: networkOptions!.loggingerror,
+          compact: networkOptions!.loggingcompact,
+          maxWidth: networkOptions!.loggingmaxWidth,
+        ),
+      );
     }
     if ((baseUrl ?? appBaseUrl) != null) {
       this.options.baseUrl = (baseUrl ?? appBaseUrl)!;

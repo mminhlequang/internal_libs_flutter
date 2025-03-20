@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../setup/index.dart';
+import '../internal_core.dart';
 
 class ScaleInheritedStateContainer extends InheritedWidget {
   final double scaleValue;

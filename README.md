@@ -14,3 +14,13 @@
 
 //// main.dart
 // iwuPackSetup()
+
+
+  internal_core:
+    git:
+      url: https://github.com/mminhlequang/internal_libs_flutter.git
+      path: core/
+  internal_network:
+    git:
+      url: https://github.com/mminhlequang/internal_libs_flutter.git
+      path: network/

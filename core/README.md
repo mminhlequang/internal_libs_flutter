@@ -14,3 +14,10 @@
 
 //// main.dart
 // imagineeringwithusPackSetup()
+
+
+
+  intl_phone_number_input:
+    git:
+      url: https://github.com/mminhlequang/intl_phone_number_input.git
+      ref: develop
