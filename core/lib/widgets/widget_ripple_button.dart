@@ -44,8 +44,7 @@ class WidgetInkWellTransparent extends StatelessWidget {
         borderRadius: _borderRadius,
         onTap: onTap,
         onTapDown: onTapDown,
-        hoverColor: hoverColor ??
-           appColors?.hoverColor ,
+        hoverColor: hoverColor ?? appColors?.hoverColor,
         child: child,
       ),
     );
@@ -55,8 +54,10 @@ class WidgetInkWellTransparent extends StatelessWidget {
 class WidgetRippleButton extends StatelessWidget {
   const WidgetRippleButton({
     super.key,
+    this.enable = true,
     this.title = '',
     this.color,
+    this.disabledColor,
     this.hoverColor,
     this.radius = 26,
     this.elevation = 0,
@@ -73,10 +74,12 @@ class WidgetRippleButton extends StatelessWidget {
   const WidgetRippleButton.child({
     required this.child,
     this.color,
+    this.disabledColor,
     this.hoverColor,
     this.elevation = 0,
     this.borderRadius,
     this.radius = 26,
+    this.enable = true,
     this.onTap,
     this.titleStyle,
     this.shadowColor,
@@ -86,8 +89,10 @@ class WidgetRippleButton extends StatelessWidget {
         width = null,
         title = '';
 
+  final bool enable;
   final String title;
   final Color? color;
+  final Color? disabledColor;
   final Color? hoverColor;
   final Color? shadowColor;
   final double elevation;
@@ -108,11 +113,13 @@ class WidgetRippleButton extends StatelessWidget {
     return Material(
       elevation: elevation,
       shadowColor: shadowColor,
-      color: color ?? Colors.transparent,
+      color: enable
+          ? color ?? Colors.transparent
+          : (disabledColor ?? Colors.transparent),
       shape: RoundedRectangleBorder(borderRadius: _borderRadius),
       child: InkWell(
         borderRadius: _borderRadius,
-        onTap: onTap,
+        onTap: enable ? onTap : null,
         hoverColor: hoverColor,
         child: child ??
             Container(
