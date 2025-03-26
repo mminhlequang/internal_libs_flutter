@@ -1,11 +1,10 @@
-import 'dart:convert';
 
 import 'package:internal_network/options.dart';
 import 'package:dio/browser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import 'log_interceptor.dart';
 
 class AppClient extends DioForBrowser {
   static AppClient? _instance;
@@ -29,6 +28,7 @@ class AppClient extends DioForBrowser {
     );
     if (options != null) _instance!.options = options;
     if (appBaseUrl != null) _instance!.options.baseUrl = appBaseUrl!;
+
     if ((token == null || token.isEmpty)) {
       _instance!.options.headers.remove(r'Authorization');
     } else {
@@ -56,20 +56,32 @@ class AppClient extends DioForBrowser {
     if (networkOptions?.customInterceptors?.isNotEmpty == true) {
       interceptors.addAll(networkOptions!.customInterceptors!);
     }
-    if (networkOptions?.loggingEnable == true) {
+    if (networkOptions?.loggingEnable ?? false) {
       interceptors.add(
-        PrettyDioLogger(
-          requestHeader: networkOptions!.loggingrequestHeader,
-          requestBody: networkOptions!.loggingrequestBody,
-          responseBody: networkOptions!.loggingrequestBody,
-          responseHeader: networkOptions!.loggingrequestHeader,
-          error: networkOptions!.loggingerror,
-          compact: networkOptions!.loggingcompact,
-          maxWidth: networkOptions!.loggingmaxWidth,
+        CustomLogInterceptor(
+          requestHeader: networkOptions?.loggingrequestHeader ?? false,
+          requestBody: networkOptions?.loggingrequestBody ?? false,
+          responseBody: networkOptions?.loggingrequestBody ?? false,
+          responseHeader: networkOptions?.loggingrequestHeader ?? false,
+          error: networkOptions?.loggingerror ?? false,
+          logPrint: (o) {
+            debugPrint(o.toString());
+          },
         ),
       );
+      // interceptors.add(
+      //   PrettyDioLogger(
+      //     requestHeader: networkOptions.loggingrequestHeader,
+      //     requestBody: networkOptions.loggingrequestBody,
+      //     responseBody: networkOptions.loggingrequestBody,
+      //     responseHeader: networkOptions.loggingrequestHeader,
+      //     error: networkOptions.loggingerror,
+      //     compact: networkOptions.loggingcompact,
+      //     maxWidth: networkOptions.loggingmaxWidth,
+      //   ),
+      // );
     }
-    if((baseUrl ?? appBaseUrl) != null) {
+    if ((baseUrl ?? appBaseUrl) != null) {
       this.options.baseUrl = (baseUrl ?? appBaseUrl)!;
     }
   }
