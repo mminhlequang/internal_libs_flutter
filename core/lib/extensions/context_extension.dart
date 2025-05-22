@@ -1,6 +1,5 @@
 part of 'extensions.dart';
 
-
 extension BuildContextExtension on BuildContext {
   /// The same of [MediaQuery.sizeOff(context)]
   Size get mediaQuerySize => MediaQuery.sizeOf(this);

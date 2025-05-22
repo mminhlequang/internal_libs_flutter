@@ -1,6 +1,5 @@
 part of 'extensions.dart';
 
-
 /// An extension on integer values to simplify creating SizedBox with height or width.
 extension SizedBoxExtension on int {
   /// Returns a SizedBox with the specified height.
@@ -23,6 +22,4 @@ extension CommonWidgetExtension on Widget {
   Widget visible(bool visible) => Visibility(visible: visible, child: this);
 
   Widget center() => Center(child: this);
-  
-  
 }

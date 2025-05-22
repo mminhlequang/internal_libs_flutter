@@ -1,7 +1,5 @@
 part of 'extensions.dart';
 
-
-
 DateFormat intlDateFormat([newPattern, languageCode]) {
   return DateFormat(newPattern, languageCode ?? appPrefs?.languageCode);
 }

@@ -1,6 +1,5 @@
 part of 'extensions.dart';
 
-
 class ScaleInheritedStateContainer extends InheritedWidget {
   final double scaleValue;
 
