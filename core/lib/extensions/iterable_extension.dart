@@ -1,11 +1,13 @@
-extension IndexedIterable<E> on Iterable<E> {
+part of 'extensions.dart';
+
+extension IterableExtension<E> on Iterable<E> {
   Iterable<T> mapIndexed<T>(T Function(E e, int i) f) {
     var i = 0;
     return map((e) => f(e, i++));
   }
 
-  Map<T, List<E>> groupBy<S, T>(T Function(E) key) {
-    var map = <T, List<E>>{};
+  Map<K, List<E>> groupBy<K>(K Function(E) key) {
+    var map = <K, List<E>>{};
     for (var element in this) {
       (map[key(element)] ??= []).add(element);
     }

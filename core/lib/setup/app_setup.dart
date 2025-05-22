@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'app_base.dart';
+part of '../internal_core.dart';
 
 AppSetup? get appSetup => AppSetup._instance;
 dynamic  get appColors => appSetup?.appColors;

@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+part of 'extensions.dart';
 
-import '../internal_core.dart';
+
 
 DateFormat intlDateFormat([newPattern, languageCode]) {
   return DateFormat(newPattern, languageCode ?? appPrefs?.languageCode);

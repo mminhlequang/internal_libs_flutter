@@ -1,3 +1,5 @@
+part of 'extensions.dart';
+
 extension TextContainsExtension on String {
   bool isContainsASCII(String value) {
     return _ASCII.isContains(this, value);
@@ -754,4 +756,8 @@ class _ASCII {
     return _parse((a ?? '').trim().toUpperCase())
         .contains(_parse((b ?? '').trim().toUpperCase()));
   }
+}
+
+extension TextStyleExtension on TextStyle {
+  // ... existing code ...
 }

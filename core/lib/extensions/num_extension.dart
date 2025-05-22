@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import '../internal_core.dart';
+part of 'extensions.dart';
+
 
 class ScaleInheritedStateContainer extends InheritedWidget {
   final double scaleValue;
@@ -30,7 +30,7 @@ class ScaleInheritedStateContainer extends InheritedWidget {
 
 double get _scale => 1;
 
-extension SizeExtension on num {
+extension NumExtension on num {
   double s() {
     return this *
         (ScaleInheritedStateContainer.of(findAppContext)?.scaleValue ?? _scale);

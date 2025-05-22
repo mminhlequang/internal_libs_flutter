@@ -1,13 +1,6 @@
-import 'dart:math';
-import 'dart:ui' as ui;
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
 
-import '../internal_core.dart';
+part of '../internal_core.dart';
 
 String appImageCorrectUrl(String url, {base}) =>
     appSetup?.networkOptions?.appImageCorrectUrl(url, base: base) ?? url;

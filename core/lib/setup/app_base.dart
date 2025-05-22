@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of '../internal_core.dart';
 
 enum AppEnv { preprod, prod }
 

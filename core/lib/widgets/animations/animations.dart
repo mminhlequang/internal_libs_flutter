@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:internal_core/extensions/context_extension.dart';
+import 'package:internal_core/extensions/extensions.dart';
 import 'package:flutter/widgets.dart';
 
 import 'get_animated_builder.dart';

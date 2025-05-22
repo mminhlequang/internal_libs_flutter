@@ -1,8 +1,7 @@
-import 'dart:io';
+part of 'extensions.dart';
 
-import 'package:flutter/material.dart';
 
-extension ContextExtensionss on BuildContext {
+extension BuildContextExtension on BuildContext {
   /// The same of [MediaQuery.sizeOff(context)]
   Size get mediaQuerySize => MediaQuery.sizeOf(this);
 

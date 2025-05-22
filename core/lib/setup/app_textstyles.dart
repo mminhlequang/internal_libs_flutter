@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+ 
 
-import 'app_setup.dart';
+part of '../internal_core.dart';
 
 double get _height => appSetup?.appTextStyleWrap?.height?.call() ?? 1.2;
 double get _fontSize => appSetup?.appTextStyleWrap?.fontSize?.call() ?? 14;
