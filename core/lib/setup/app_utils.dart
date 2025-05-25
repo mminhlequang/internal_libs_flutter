@@ -20,8 +20,6 @@ String assetjpg(x) => 'assets/images/jpg/$x.jpg';
 
 String assetsvg(x) => 'assets/images/svg/$x.svg';
 
-String assetlottie(x) => 'assets/lotties/$x.json';
-
 String assetjson(x) => 'assets/jsons/$x.json';
 
 String assetvideo(x) => 'assets/videos/$x';

@@ -1,7 +1,7 @@
 part of 'extensions.dart';
 
 /// An extension on integer values to simplify creating SizedBox with height or width.
-extension SizedBoxExtension on int {
+extension SizedBoxExtension on num {
   /// Returns a SizedBox with the specified height.
   SizedBox get h => SizedBox(height: toDouble());
 

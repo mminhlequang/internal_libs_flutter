@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
 
 import '../internal_core.dart';
 
@@ -116,46 +115,7 @@ class WidgetAssetImage extends StatelessWidget {
     return image;
   }
 }
-
-
-class WidgetAppLottie extends StatelessWidget {
-  final String asset;
-  final double? width;
-  final double? height;
-  final BoxFit fit;
-  final String? package;
-  final bool? repeat;
-  final bool? reverse;
-  final Animation<double>? controller;
-  final dynamic onLoaded;
-  const WidgetAppLottie(
-    this.asset, {
-    super.key,
-    this.width,
-    this.height,
-    this.fit = BoxFit.contain,
-    this.package,
-    this.repeat,
-    this.reverse,
-    this.controller,
-    this.onLoaded,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Lottie.asset(
-      asset.startsWith('assets/') ? asset : assetlottie(asset),
-      controller: controller,
-      package: package,
-      width: width,
-      height: height,
-      fit: fit,
-      repeat: repeat,
-      reverse: reverse,
-      onLoaded: onLoaded,
-    );
-  }
-}
+ 
 
 class WidgetAppSVG extends StatelessWidget {
   final String asset;
