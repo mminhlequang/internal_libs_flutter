@@ -2,6 +2,7 @@
 
 part of '../internal_core.dart';
 
+
 String appImageCorrectUrl(String url, {base}) =>
     appSetup?.networkOptions?.appImageCorrectUrl(url, base: base) ?? url;
 

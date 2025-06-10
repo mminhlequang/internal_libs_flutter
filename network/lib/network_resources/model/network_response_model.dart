@@ -2,6 +2,8 @@ import 'package:internal_core/internal_core.dart';
 import 'package:internal_network/options.dart';
 import 'package:dio/dio.dart' as dio;
 
+bool isStatusCodeSuccess(statusCode) => statusCode == 200 || statusCode == 201;
+
 class NetworkResponse<T> {
   static String disconnectError = 'disconnectError';
   static String unknownError = 'unknownError';
@@ -14,7 +16,9 @@ class NetworkResponse<T> {
   T? data;
   String? msg;
 
-  bool get isSuccess => (status == true && data != null);
+  bool get isSuccess => networkOptions?.responseIsSuccess != null
+      ? networkOptions!.responseIsSuccess!(this)
+      : (isStatusCodeSuccess(statusCode) && data != null);
 
   bool get isError => status != true;
   bool get isErrorDisconnect => msg == disconnectError;
