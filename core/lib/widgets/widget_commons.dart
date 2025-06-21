@@ -239,7 +239,7 @@ class WidgetAvatar extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: Colors.transparent,
       backgroundImage: AssetImage(
-        errorAsset ?? assetjpg('defaultavatar'),
+        errorAsset ?? assetpng('default_avatar'),
         package: errorAsset != null ? null : '_private_core',
       ),
     );
