@@ -45,7 +45,10 @@ class PNetworkOptionsImpl extends PNetworkOptions {
   final List<Interceptor>? customInterceptors;
   final Function(DioException)? errorInterceptor;
 
+  //Fastapi: ""
   final String? responsePrefixData;
+  //Fastapi: "detail"
+  final String? responsePrefixErrorMessage;
   final bool Function(NetworkResponse response)? responseIsSuccess;
 
   //loging setting
@@ -74,6 +77,7 @@ class PNetworkOptionsImpl extends PNetworkOptions {
     this.loggingcompact = true,
     this.loggingmaxWidth = 120,
     this.responsePrefixData,
+    this.responsePrefixErrorMessage,
     this.responseIsSuccess,
   });
 }

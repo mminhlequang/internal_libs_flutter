@@ -11,6 +11,9 @@ class NetworkResponse<T> {
   String get responsePrefixData =>
       networkOptions?.responsePrefixData ?? "values";
 
+  String get responsePrefixErrorMessage =>
+      networkOptions?.responsePrefixErrorMessage ?? "error";
+
   int? statusCode;
   T? data;
   String? msg;
@@ -64,8 +67,8 @@ class NetworkResponse<T> {
       data = null;
       dio.Response? response = error.response;
       statusCode = response?.statusCode ?? 500;
-      if (response?.data?['error'] != null) {
-        this.msg = response?.data?['error'];
+      if (response?.data?[responsePrefixErrorMessage] != null) {
+        this.msg = response?.data?[responsePrefixErrorMessage];
       }
     } catch (e) {
       appDebugPrint("NetworkResponse.withErrorRequest: catch=$e");
