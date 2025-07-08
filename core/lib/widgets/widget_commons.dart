@@ -240,7 +240,7 @@ class WidgetAvatar extends StatelessWidget {
       backgroundColor: Colors.transparent,
       backgroundImage: AssetImage(
         errorAsset ?? assetpng('default_avatar'),
-        package: errorAsset != null ? null : '_private_core',
+        package: errorAsset != null ? null : 'internal_core',
       ),
     );
   }
@@ -379,34 +379,6 @@ class WidgetToastableState extends State<WidgetToastable> {
               child: widget.child,
             ),
     );
-  }
-}
-
-String _tag = 'WidgetArckipelLogo';
-
-class WidgetArckipelLogo extends StatelessWidget {
-  final bool enableHero;
-  final bool containsPowerBy;
-  final double width;
-  final Color color;
-  const WidgetArckipelLogo({
-    Key? key,
-    required this.width,
-    required this.color,
-    this.containsPowerBy = true,
-    this.enableHero = false,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    Widget child = WidgetAppSVG(
-      assetsvg(containsPowerBy ? 'poweredbyarckipelLogo' : 'arckipelLogo'),
-      package: '_private_core',
-      width: width,
-      color: color,
-    );
-    if (enableHero) return Hero(tag: _tag, child: child);
-    return child;
   }
 }
 
