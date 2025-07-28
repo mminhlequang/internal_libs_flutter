@@ -101,48 +101,4 @@ class CustomProxyInterceptor extends Interceptor {
 
     handler.next(options);
   }
-
-  @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // Nếu đây là response từ proxy, xử lý đặc biệt
-    if (response.requestOptions.extra['isProxyRequest'] == true) {
-      try {
-        // Proxy response có thể có cấu trúc khác, cần xử lý
-        if (response.data is Map) {
-          // Giả sử proxy trả về data trong field 'data' hoặc 'response'
-          final proxyData = response.data;
-          if (proxyData.containsKey('data')) {
-            response.data = proxyData['data'];
-          } else if (proxyData.containsKey('response')) {
-            response.data = proxyData['response'];
-          }
-          // Cập nhật status code nếu cần
-          if (proxyData.containsKey('status')) {
-            response.statusCode = proxyData['status'];
-          }
-        }
-      } catch (e) {
-        debugPrint('Error processing proxy response: $e');
-      }
-    }
-
-    handler.next(response);
-  }
-
-  @override
-  void onError(DioException err, ErrorInterceptorHandler handler) {
-    // Xử lý lỗi từ proxy
-    if (err.requestOptions.extra['isProxyRequest'] == true) {
-      debugPrint('Proxy request error: ${err.message}');
-
-      // Có thể thêm logic retry hoặc fallback ở đây
-      if (err.type == DioExceptionType.connectionTimeout ||
-          err.type == DioExceptionType.receiveTimeout) {
-        debugPrint(
-            'Proxy timeout, consider increasing timeout or using fallback');
-      }
-    }
-
-    handler.next(err);
-  }
 }
