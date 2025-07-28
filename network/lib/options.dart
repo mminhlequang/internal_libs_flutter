@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:internal_core/internal_core.dart';
 import 'package:dio/dio.dart';
 
+import 'internal_network.dart';
 import 'network_resources/resources.dart';
 
 const String methodGet = "GET";
@@ -60,6 +61,8 @@ class PNetworkOptionsImpl extends PNetworkOptions {
   final bool loggingerror;
   final bool loggingcompact;
   final int loggingmaxWidth;
+  
+  final ProxyConfig? proxyConfig;
 
   PNetworkOptionsImpl({
     required super.baseUrl,
@@ -79,5 +82,6 @@ class PNetworkOptionsImpl extends PNetworkOptions {
     this.responsePrefixData,
     this.responsePrefixErrorMessage,
     this.responseIsSuccess,
+    this.proxyConfig,
   });
 }

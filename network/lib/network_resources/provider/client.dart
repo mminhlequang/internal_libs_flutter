@@ -2,8 +2,9 @@ import 'package:internal_network/options.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
- 
+
 import 'log_interceptor.dart';
+import 'custom_proxy_interceptor.dart';
 
 class AppClient extends DioForNative {
   static AppClient? _instance;
@@ -15,7 +16,8 @@ class AppClient extends DioForNative {
     String? baseUrl,
     bool enableErrorHandler = true,
     BaseOptions? options,
-    List<Interceptor>? customInterceptors,
+    List<Interceptor>? customInterceptors, 
+    ProxyConfig? proxyConfig,
   }) {
     baseUrl ??= appBaseUrl;
     _enableErrorHandler = enableErrorHandler;
@@ -24,6 +26,7 @@ class AppClient extends DioForNative {
       baseUrl: appBaseUrl,
       options: options,
       customInterceptors: customInterceptors,
+      proxyConfig: proxyConfig,
     );
     if (options != null) _instance!.options = options;
     if (appBaseUrl != null) _instance!.options.baseUrl = appBaseUrl!;
@@ -43,7 +46,17 @@ class AppClient extends DioForNative {
     String? baseUrl,
     BaseOptions? options,
     List<Interceptor>? customInterceptors,
+    ProxyConfig? proxyConfig,
   }) : super(options) {
+    var effectiveProxyConfig = proxyConfig ?? networkOptions?.proxyConfig;    
+    if (effectiveProxyConfig?.proxyEndpoint != null) {
+      interceptors.add(CustomProxyInterceptor(
+        proxyEndpoint: effectiveProxyConfig!.proxyEndpoint,
+        customHeaders: effectiveProxyConfig.customHeaders,
+        timeout: effectiveProxyConfig.timeout,
+      ));
+    }
+
     interceptors.add(InterceptorsWrapper(
       onRequest: _requestInterceptor,
       onResponse: _responseInterceptor,
