@@ -19,17 +19,16 @@ import 'package:flutter/foundation.dart';
 //     "additionalProp2": "string",
 //     "additionalProp3": "string"
 //   }
-// }' 
-
+// }'
 
 /// Cấu hình proxy cho network client
 class ProxyConfig {
-  final String proxyEndpoint; 
+  final String proxyEndpoint;
   final Map<String, String>? customHeaders;
   final Duration? timeout;
 
   const ProxyConfig({
-    required this.proxyEndpoint, 
+    required this.proxyEndpoint,
     this.customHeaders,
     this.timeout,
   });
@@ -37,12 +36,12 @@ class ProxyConfig {
 
 /// Custom Proxy Interceptor cho endpoint POST proxy
 class CustomProxyInterceptor extends Interceptor {
-  final String proxyEndpoint; 
+  final String proxyEndpoint;
   final Map<String, String>? customHeaders;
   final Duration? timeout;
 
   CustomProxyInterceptor({
-    required this.proxyEndpoint, 
+    required this.proxyEndpoint,
     this.customHeaders,
     this.timeout,
   });
@@ -50,7 +49,7 @@ class CustomProxyInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    if (  proxyEndpoint.isNotEmpty) {
+    if (proxyEndpoint.isNotEmpty) {
       try {
         // Tạo payload cho proxy API
         final proxyPayload = {
@@ -61,7 +60,7 @@ class CustomProxyInterceptor extends Interceptor {
             ...?customHeaders,
           },
           'data': options.data ?? {},
-          'params': options.queryParameters,
+          'params': options.queryParameters.map((key, value) => MapEntry(key, value.toString())),
         };
 
         // Tạo request mới đến proxy endpoint
