@@ -3,9 +3,17 @@ import 'package:internal_core/internal_core.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:octo_image/octo_image.dart';
+import 'package:flutter_avif/flutter_avif.dart';
 
 ImageProvider getImageProviderFromUrl(String imageUrl) {
-  return CachedNetworkImageProvider(appImageCorrectUrl(imageUrl));
+  final correctedUrl = appImageCorrectUrl(imageUrl);
+
+  // Check if the URL contains .avif extension
+  if (correctedUrl.toLowerCase().contains('.avif')) {
+    return CachedNetworkAvifImageProvider(correctedUrl);
+  }
+
+  return CachedNetworkImageProvider(correctedUrl);
 }
 
 class WidgetAppImage extends StatelessWidget {
@@ -66,8 +74,7 @@ class WidgetAppImage extends StatelessWidget {
 
   bool get isUrlEmpty =>
       (imageUrl ?? '').trim().isEmpty ||
-      (imageUrl ?? '').trim() ==
-          appSetup?.networkOptions?.baseUrlAsset;
+      (imageUrl ?? '').trim() == appSetup?.networkOptions?.baseUrlAsset;
 
   Widget get error => errorWidget ?? const SizedBox();
 
@@ -170,13 +177,10 @@ class WidgetAppShimmer extends StatelessWidget {
   });
 
   Color get _baseColor =>
-      baseColor ??
-      appColors?.shimmerBaseColor ??
-      hexColor('#F4F6F8');
+      baseColor ?? appColors?.shimmerBaseColor ?? hexColor('#F4F6F8');
 
   Color get _highlightColor =>
-      highlightColor ??
-      appColors?.shimmerHighlightColor ?? Colors.white;
+      highlightColor ?? appColors?.shimmerHighlightColor ?? Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -193,5 +197,3 @@ class WidgetAppShimmer extends StatelessWidget {
     );
   }
 }
-
- 

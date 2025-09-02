@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dash_flags/dash_flags.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_avif/flutter_avif.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -56,7 +57,6 @@ class WidgetAppFlag extends StatelessWidget {
   }
 }
 
-
 class WidgetAssetImage extends StatelessWidget {
   final String _name;
   final double? width;
@@ -96,13 +96,21 @@ class WidgetAssetImage extends StatelessWidget {
       this.borderRadius})
       : _name = assetjpg(name);
 
-  Widget get image => Image.asset(
-        _name,
-        width: width,
-        height: height,
-        color: color,
-        fit: fit,
-      );
+  Widget get image => _name.contains('.avif')
+      ? AvifImage.asset(
+          _name,
+          width: width,
+          height: height,
+          color: color,
+          fit: fit,
+        )
+      : Image.asset(
+          _name,
+          width: width,
+          height: height,
+          color: color,
+          fit: fit,
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +123,6 @@ class WidgetAssetImage extends StatelessWidget {
     return image;
   }
 }
- 
 
 class WidgetAppSVG extends StatelessWidget {
   final String asset;
