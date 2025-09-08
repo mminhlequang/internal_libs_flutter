@@ -1,2 +1,1 @@
- 
-export 'client.dart' if (dart.library.html) 'client_web.dart';
+export 'client_web.dart' if (dart.library.io) 'client.dart';
