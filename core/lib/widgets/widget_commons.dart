@@ -106,6 +106,7 @@ class WidgetAssetImage extends StatelessWidget {
         )
       : Image.asset(
           _name,
+          package: package,
           width: width,
           height: height,
           color: color,
@@ -185,6 +186,7 @@ class WidgetAvatar extends StatelessWidget {
   final Color? backgroundColor;
   final Color? borderColor;
   final String? errorAsset;
+  final String? errorAssetPackage;
   final Function()? onTap;
   final bool isWithoutBorder;
   final Widget Function()? placeholderBuilder;
@@ -201,6 +203,7 @@ class WidgetAvatar extends StatelessWidget {
     this.errorAsset,
     this.borderColor,
     this.isWithoutBorder = false,
+    this.errorAssetPackage,
   });
 
   factory WidgetAvatar.withoutBorder({
@@ -210,6 +213,7 @@ class WidgetAvatar extends StatelessWidget {
     Widget Function()? placeholderBuilder,
     Function()? onTap,
     String? errorAsset,
+    String? errorAssetPackage,
   }) =>
       WidgetAvatar(
         key: key,
@@ -220,6 +224,7 @@ class WidgetAvatar extends StatelessWidget {
         placeholderBuilder: placeholderBuilder,
         onTap: onTap,
         errorAsset: errorAsset,
+        errorAssetPackage: errorAssetPackage,
         isWithoutBorder: true,
         borderColor: Colors.transparent,
         backgroundColor: Colors.transparent,
@@ -247,7 +252,7 @@ class WidgetAvatar extends StatelessWidget {
       backgroundColor: Colors.transparent,
       backgroundImage: AssetImage(
         errorAsset ?? assetpng('default_avatar'),
-        package: errorAsset != null ? null : 'internal_core',
+        package: errorAssetPackage ?? 'internal_core',
       ),
     );
   }
