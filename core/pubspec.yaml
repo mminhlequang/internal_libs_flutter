@@ -23,6 +23,9 @@ dependencies:
   flutter_portal: ^1.1.4
   flutter_avif: ^3.0.0
 
+  # sẽ sử dụng sớm
+  shadcn_ui: ">=0.31.7"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
