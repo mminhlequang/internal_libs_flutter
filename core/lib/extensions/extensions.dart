@@ -10,6 +10,5 @@ import '../internal_core.dart';
 part 'context_extension.dart';
 part 'date_extension.dart';
 part 'iterable_extension.dart';
-part 'num_extension.dart';
 part 'text_extension.dart';
 part 'widget_extension.dart';
