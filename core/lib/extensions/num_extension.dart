@@ -34,4 +34,12 @@ extension NumExtension on num {
     return this *
         (ScaleInheritedStateContainer.of(findAppContext)?.scaleValue ?? _scale);
   }
+
+  Widget w() {
+    return SizedBox(width: toDouble());
+  }
+
+  Widget h() {
+    return SizedBox(height: toDouble());
+  }
 }

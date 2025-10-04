@@ -11,20 +11,13 @@ dependencies:
     sdk: flutter
     
   intl: ">=0.20.2" 
-  google_fonts: ">=6.2.1"
   flutter_staggered_animations: ">=1.1.1"
-  flutter_svg: ">=2.1.0"
+  flutter_svg: ">=2.2.1"
   cached_network_image: ">=3.4.1"
   octo_image: ">=2.1.0"
   dash_flags: ">=0.1.1"
-  logger: ">=2.5.0"
-  equatable: ">=2.0.7"
   collection: ">=1.19.1"
   flutter_portal: ^1.1.4
-  flutter_avif: ^3.0.0
-
-  # sẽ sử dụng sớm
-  shadcn_ui: ">=0.31.7"
 
 dev_dependencies:
   flutter_test:

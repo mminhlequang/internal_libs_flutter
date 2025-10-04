@@ -3,15 +3,14 @@ import 'package:internal_core/internal_core.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:octo_image/octo_image.dart';
-import 'package:flutter_avif/flutter_avif.dart';
 
 ImageProvider getImageProviderFromUrl(String imageUrl) {
   final correctedUrl = appImageCorrectUrl(imageUrl);
 
   // Check if the URL contains .avif extension
-  if (correctedUrl.toLowerCase().contains('.avif')) {
-    return CachedNetworkAvifImageProvider(correctedUrl);
-  }
+  // if (correctedUrl.toLowerCase().contains('.avif')) {
+  //   return CachedNetworkAvifImageProvider(correctedUrl);
+  // }
 
   return CachedNetworkImageProvider(correctedUrl);
 }

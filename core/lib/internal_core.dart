@@ -5,9 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
-
-import 'package:google_fonts/google_fonts.dart';
 
 export 'widgets/widgets.dart';
 export 'extensions/extensions.dart';

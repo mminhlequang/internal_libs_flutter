@@ -1,7 +1,4 @@
-
-
 part of '../internal_core.dart';
-
 
 String appImageCorrectUrl(String url, {base}) =>
     appSetup?.networkOptions?.appImageCorrectUrl(url, base: base) ?? url;
@@ -25,20 +22,13 @@ String assetjson(x) => 'assets/jsons/$x.json';
 
 String assetvideo(x) => 'assets/videos/$x';
 
-appDebugPrint(m) {
+void appDebugPrint(m) {
   if (kDebugMode) {
     if (m is! String) {
       print(m);
     } else {
       debugPrint(m);
     }
-  }
-}
-
-final _logger = Logger();
-appDebugTrack({required where, required text, bool onlyDebugMode = true}) {
-  if (!onlyDebugMode || kDebugMode) {
-    _logger.e("[appDebugTrack][$where] $text");
   }
 }
 

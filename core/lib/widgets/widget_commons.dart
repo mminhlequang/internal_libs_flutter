@@ -1,20 +1,22 @@
 import 'dart:async';
 
-import 'package:dash_flags/dash_flags.dart';
+import 'package:dash_flags/dash_flags.dart' deferred as dash_flags;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_avif/flutter_avif.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../internal_core.dart';
 
-class WidgetAppFlag extends StatelessWidget {
+/// WidgetAppFlag chuyển sang StatefulWidget để load deferred library dash_flags.
+/// Điều này giúp giảm kích thước bundle ban đầu và chỉ load khi cần thiết.
+class WidgetAppFlag extends StatefulWidget {
   final String? countryCode;
   final String? languageCode;
   final double height;
   final Widget? errorBuilder;
   final double radius;
+
   const WidgetAppFlag.languageCode({
     super.key,
     this.height = 24,
@@ -32,28 +34,63 @@ class WidgetAppFlag extends StatelessWidget {
   }) : languageCode = null;
 
   @override
+  State<WidgetAppFlag> createState() => _WidgetAppFlagState();
+}
+
+class _WidgetAppFlagState extends State<WidgetAppFlag> {
+  bool _isLibLoaded = false;
+  late Future<void> _loadLibFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    // Bắt đầu load deferred library khi widget được khởi tạo
+    _loadLibFuture = _loadLib();
+  }
+
+  Future<void> _loadLib() async {
+    await dash_flags.loadLibrary();
+    if (mounted) {
+      setState(() {
+        _isLibLoaded = true;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Widget child = const SizedBox();
-    if (languageCode != null) {
-      child = LanguageFlag(
-        language: Language.fromCode(languageCode!.toLowerCase()),
-        height: height,
-      );
-    } else if (countryCode != null) {
-      child = CountryFlag(
-        country: Country.fromCode(countryCode!.toLowerCase()),
-        height: height,
-      );
-    } else {
-      child = errorBuilder ?? const SizedBox();
-    }
-    if (radius != 0) {
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(radius),
-        child: child,
-      );
-    }
-    return child;
+    // Sử dụng FutureBuilder để chờ load xong thư viện
+    return FutureBuilder<void>(
+      future: _loadLibFuture,
+      builder: (context, snapshot) {
+        if (!_isLibLoaded) {
+          // Có thể trả về widget loading hoặc SizedBox tạm thời
+          return const SizedBox();
+        }
+
+        Widget child = const SizedBox();
+        if (widget.languageCode != null) {
+          child = dash_flags.LanguageFlag(
+            language: dash_flags.Language.fromCode(widget.languageCode!.toLowerCase()),
+            height: widget.height,
+          );
+        } else if (widget.countryCode != null) {
+          child = dash_flags.CountryFlag(
+            country: dash_flags.Country.fromCode(widget.countryCode!.toLowerCase()),
+            height: widget.height,
+          );
+        } else {
+          child = widget.errorBuilder ?? const SizedBox();
+        }
+        if (widget.radius != 0) {
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(widget.radius),
+            child: child,
+          );
+        }
+        return child;
+      },
+    );
   }
 }
 
@@ -96,15 +133,17 @@ class WidgetAssetImage extends StatelessWidget {
       this.borderRadius})
       : _name = assetjpg(name);
 
-  Widget get image => _name.contains('.avif')
-      ? AvifImage.asset(
-          _name,
-          width: width,
-          height: height,
-          color: color,
-          fit: fit,
-        )
-      : Image.asset(
+  Widget get image => 
+  // _name.contains('.avif')
+  //     ? AvifImage.asset(
+  //         _name,
+  //         width: width,
+  //         height: height,
+  //         color: color,
+  //         fit: fit,
+  //       )
+  //     :
+       Image.asset(
           _name,
           package: package,
           width: width,

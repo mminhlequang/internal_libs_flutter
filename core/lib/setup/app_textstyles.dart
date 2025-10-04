@@ -1,4 +1,3 @@
-
 part of '../internal_core.dart';
 
 double get _height => appSetup?.appTextStyleWrap?.height?.call() ?? 1.2;
@@ -9,7 +8,7 @@ TextStyle _fontWrap({required TextStyle textStyle}) {
   if (appSetup?.appTextStyleWrap?.fontWrap != null) {
     return appSetup!.appTextStyleWrap!.fontWrap(textStyle);
   }
-  return GoogleFonts.outfit(textStyle: textStyle);
+  return textStyle;
 }
 
 /// Hàm tạo TextStyle với fontWeight w100, bổ sung đầy đủ các field của TextStyle constructor

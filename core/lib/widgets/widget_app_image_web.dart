@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter_avif/flutter_avif.dart';
 import 'package:internal_core/internal_core.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +9,9 @@ ImageProvider getImageProviderFromUrl(String imageUrl) {
   final correctedUrl = appImageCorrectUrl(imageUrl);
 
   // Check if the URL contains .avif extension
-  if (correctedUrl.toLowerCase().contains('.avif')) {
-    return CachedNetworkAvifImageProvider(correctedUrl);
-  }
+  // if (correctedUrl.toLowerCase().contains('.avif')) {
+  //   return CachedNetworkAvifImageProvider(correctedUrl);
+  // }
 
   return CachedNetworkImageProvider(correctedUrl);
 }
