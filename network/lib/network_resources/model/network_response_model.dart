@@ -62,7 +62,8 @@ class NetworkResponse<T> {
   }
 
   NetworkResponse.withErrorRequest(dio.DioException error) {
-    appDebugPrint("NetworkResponse.withErrorRequest: $error");
+    print(
+        "NetworkErrorRequest: ${error.type.name} ${error.message}");
     try {
       data = null;
       dio.Response? response = error.response;
@@ -71,18 +72,18 @@ class NetworkResponse<T> {
         this.msg = response?.data?[responsePrefixErrorMessage];
       }
     } catch (e) {
-      appDebugPrint("NetworkResponse.withErrorRequest: catch=$e");
+      print("NetworkResponse.withErrorRequest: catch=$e");
     }
   }
 
   NetworkResponse.withErrorConvert(error) {
-    appDebugPrint("NetworkResponse.withErrorConvert: $error");
+    print("NetworkResponse.withErrorConvert: $error");
     data = null;
     this.msg = unknownError;
   }
 
   NetworkResponse.withDisconnect() {
-    appDebugPrint("NetworkResponse.withDisconnect");
+    print("NetworkResponse.withDisconnect");
     data = null;
     this.msg = disconnectError;
   }

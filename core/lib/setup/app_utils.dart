@@ -21,16 +21,7 @@ String assetsvg(x) => 'assets/images/svg/$x.svg';
 String assetjson(x) => 'assets/jsons/$x.json';
 
 String assetvideo(x) => 'assets/videos/$x';
-
-void appDebugPrint(m) {
-  if (kDebugMode) {
-    if (m is! String) {
-      print(m);
-    } else {
-      debugPrint(m);
-    }
-  }
-}
+ 
 
 Size textSize({required text, required context, required style}) {
   return (TextPainter(

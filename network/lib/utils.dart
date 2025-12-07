@@ -15,7 +15,6 @@ Future<NetworkResponse<T>> handleNetworkError<T>({
   try {
     return await proccess.call();
   } on DioException catch (e) {
-    appDebugPrint('DioException: $e');
     if (builder != null) {
       var _ = builder.call(e);
       if (_ is NetworkResponse<T>) return _;
