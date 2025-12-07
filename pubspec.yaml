@@ -1,0 +1,35 @@
+name: internal_core
+description: Private widgets package.
+version: 0.0.1+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+    
+  intl: ">=0.20.2" 
+  flutter_staggered_animations: ">=1.1.1"
+  flutter_svg: ">=2.2.3"
+  cached_network_image: ">=3.4.1"
+  octo_image: ">=2.1.0"
+  dash_flags: ">=0.1.1"
+  collection: ">=1.19.1"
+  flutter_portal: ^1.1.4
+  connectivity_plus: ">=7.0.0"
+  dio: ">=5.9.0"
+  mqtt_client: ">=10.11.1"
+  mqtt5_client: ">=4.15.2"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ">=6.0.0"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/ 
+    - assets/images/png/

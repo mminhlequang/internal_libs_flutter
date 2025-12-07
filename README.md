@@ -2,7 +2,7 @@
 //// HOW TO USE
 
 //// ==== Start point:
-// instSetup() {
+// internalSetup() {
 //   AppSetup.initialized(
 //     value: AppSetup(
 //       env: AppEnv.preprod,
@@ -13,14 +13,9 @@
 // }
 
 //// main.dart
-// iwuPackSetup()
+// internalSetup()
 
 
   internal_core:
     git:
       url: https://github.com/mminhlequang/internal_libs_flutter.git
-      path: core/
-  internal_network:
-    git:
-      url: https://github.com/mminhlequang/internal_libs_flutter.git
-      path: network/
