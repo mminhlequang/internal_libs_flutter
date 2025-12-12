@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:dash_flags/dash_flags.dart' deferred as dash_flags;
 import 'package:flutter/cupertino.dart';
@@ -71,12 +72,14 @@ class _WidgetAppFlagState extends State<WidgetAppFlag> {
         Widget child = const SizedBox();
         if (widget.languageCode != null) {
           child = dash_flags.LanguageFlag(
-            language: dash_flags.Language.fromCode(widget.languageCode!.toLowerCase()),
+            language: dash_flags.Language.fromCode(
+                widget.languageCode!.toLowerCase()),
             height: widget.height,
           );
         } else if (widget.countryCode != null) {
           child = dash_flags.CountryFlag(
-            country: dash_flags.Country.fromCode(widget.countryCode!.toLowerCase()),
+            country:
+                dash_flags.Country.fromCode(widget.countryCode!.toLowerCase()),
             height: widget.height,
           );
         } else {
@@ -133,24 +136,24 @@ class WidgetAssetImage extends StatelessWidget {
       this.borderRadius})
       : _name = assetjpg(name);
 
-  Widget get image => 
-  // _name.contains('.avif')
-  //     ? AvifImage.asset(
-  //         _name,
-  //         width: width,
-  //         height: height,
-  //         color: color,
-  //         fit: fit,
-  //       )
-  //     :
-       Image.asset(
-          _name,
-          package: package,
-          width: width,
-          height: height,
-          color: color,
-          fit: fit,
-        );
+  Widget get image =>
+      // _name.contains('.avif')
+      //     ? AvifImage.asset(
+      //         _name,
+      //         width: width,
+      //         height: height,
+      //         color: color,
+      //         fit: fit,
+      //       )
+      //     :
+      Image.asset(
+        _name,
+        package: package,
+        width: width,
+        height: height,
+        color: color,
+        fit: fit,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -290,7 +293,7 @@ class WidgetAvatar extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: Colors.transparent,
       backgroundImage: AssetImage(
-        errorAsset ?? assetpng('default_avatar'),
+        errorAsset ?? assetpng('default_avatar${Random().nextInt(3) + 1}'),
         package: errorAssetPackage ?? 'internal_core',
       ),
     );
