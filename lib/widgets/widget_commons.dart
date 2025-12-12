@@ -220,6 +220,8 @@ class WidgetAppSVG extends StatelessWidget {
   }
 }
 
+int? _randomSeed;
+
 class WidgetAvatar extends StatelessWidget {
   final String? imageUrl;
   final double radius1;
@@ -274,6 +276,7 @@ class WidgetAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _randomSeed ??= Random().nextInt(3) + 1;
     final child = WidgetAppImage(
       imageUrl: imageUrl,
       width: radius3 * 2,
@@ -293,7 +296,7 @@ class WidgetAvatar extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: Colors.transparent,
       backgroundImage: AssetImage(
-        errorAsset ?? assetpng('default_avatar${Random().nextInt(3) + 1}'),
+        errorAsset ?? assetpng('default_avatar$_randomSeed'),
         package: errorAssetPackage ?? 'internal_core',
       ),
     );
