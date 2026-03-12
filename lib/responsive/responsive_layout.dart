@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-double scaleW(context, [double v = 1]) {
+double scaleW(BuildContext? context, [double v = 1]) {
   if (context == null) return 1;
   if (MediaQuery.sizeOf(context).width >= 1280) return 1;
   return MediaQuery.sizeOf(context).width / 1280 * v;
 }
 
-T responsiveByWidth<T>(context, T size,
+T responsiveByWidth<T>(BuildContext? context, T size,
     {T? computer, T? tablet2, T? tablet1, T? phone}) {
   if (context == null) return size;
   if (ResponLayout.isComputer(context)) {
@@ -24,9 +24,10 @@ T responsiveByWidth<T>(context, T size,
   return size;
 }
 
-bool isComputerByWidth(context) => ResponLayout.isComputer(context);
-bool isPhoneByWidth(context) => ResponLayout.isPhone(context);
-bool isTablet1ByWidth(context) => ResponLayout.isTablet1(context);
+bool isComputerByWidth(BuildContext context) =>
+    ResponLayout.isComputer(context);
+bool isPhoneByWidth(BuildContext context) => ResponLayout.isPhone(context);
+bool isTablet1ByWidth(BuildContext context) => ResponLayout.isTablet1(context);
 
 class ResponLayout extends StatelessWidget {
   final Widget phone;
